@@ -1,21 +1,32 @@
-// افکت شناور کوچک روی کارت‌ها هنگام حرکت موس
-const cards = document.querySelectorAll('.course-card');
+const courses = document.querySelectorAll('.course-card');
+const popup = document.getElementById('passwordPopup');
+const enterBtn = document.getElementById('enterBtn');
+let selectedCourse = '';
 
-cards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.transform = `translateX(${(x - rect.width/2)/20}px) translateY(${(y - rect.height/2)/20}px) scale(1.05)`;
-  });
+const passwords = {
+  arduino: '1234',
+  ai: '5678',
+  astronomy: 'abcd',
+  webdesign: '9999',
+  'verbal-intelligence': '5555'
+};
 
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'translateX(0px) translateY(0px) scale(1)';
+// باز شدن پاپ‌آپ
+courses.forEach(card => {
+  card.addEventListener('click', () => {
+    selectedCourse = card.dataset.course;
+    popup.style.display = 'flex';
   });
 });
 
-// تغییر رنگ پس‌زمینه هنگام اسکرول
-window.addEventListener('scroll', () => {
-  const scroll = window.scrollY;
-  document.body.style.background = `linear-gradient(120deg, rgba(15,32,39,${1-scroll/1000}), rgba(32,58,67,${1-scroll/1000}), rgba(44,83,100,${1-scroll/1000}))`;
+// بررسی رمز
+enterBtn.addEventListener('click', () => {
+  const inputBox = document.getElementById('coursePassword');
+  const input = inputBox.value;
+  if(input === passwords[selectedCourse]) {
+    window.location.href = selectedCourse + '.html';
+  } else {
+    alert('رمز اشتباه است!');
+    inputBox.value = '';
+  }
 });
