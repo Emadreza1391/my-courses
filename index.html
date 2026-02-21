@@ -1,130 +1,43 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <link rel="stylesheet" href="style.css">
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دوره‌های آموزشی</title>
-<style>
-  body {
-    font-family: Tahoma, sans-serif;
-    background: #f0f4f8;
-    margin: 0;
-    padding: 0;
-  }
-  h1 { text-align: center; margin: 20px 0; }
-
-  /* کارت دوره */
-  .courses {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-  }
-  .course-card {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
-    width: 250px;
-    padding: 20px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-align: center;
-  }
-  .course-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  }
-
-  /* پاپ‌آپ رمز عبور */
-  .popup {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right:0; bottom:0;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-  }
-  .popup-content {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-  }
-  .popup-content input {
-    padding: 10px;
-    width: 80%;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  .popup-content button {
-    padding: 10px 20px;
-    border: none;
-    background: #2575fc;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-</style>
+<title>مجموعه آموزش پلاس و کهکشان</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>دوره‌های آموزشی</h1>
+<h1>مجموعه آموزش پلاس و کهکشان</h1>
 
 <div class="courses">
-  <div class="course-card" data-course="arduino" style="background: linear-gradient(135deg, #f7971e, #ffd200);">دوره آردوینو</div>
-  <div class="course-card" data-course="ai" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);">دوره هوش مصنوعی</div>
-  <div class="course-card" data-course="astronomy" style="background: linear-gradient(135deg, #00c6ff, #0072ff);">دوره ستاره‌شناسی</div>
-  <div class="course-card" data-course="webdesign" style="background: linear-gradient(135deg, #141e30, #243b55);">دوره طراحی سایت</div>
-  <div class="course-card" data-course="verbal-intelligence" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);">دوره هوش کلامی</div>
+  <div class="course-card" data-course="arduino" style="background: linear-gradient(135deg, #f7971e, #ffd200);">
+    <div class="course-name">دوره آردوینو</div>
+  </div>
+  <div class="course-card" data-course="ai" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);">
+    <div class="course-name">دوره هوش مصنوعی</div>
+  </div>
+  <div class="course-card" data-course="astronomy" style="background: linear-gradient(135deg, #00c6ff, #0072ff);">
+    <div class="course-name">دوره ستاره‌شناسی</div>
+  </div>
+  <div class="course-card" data-course="webdesign" style="background: linear-gradient(135deg, #141e30, #243b55);">
+    <div class="course-name">دوره طراحی سایت</div>
+  </div>
+  <div class="course-card" data-course="verbal-intelligence" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);">
+    <div class="course-name">دوره هوش کلامی</div>
+  </div>
 </div>
 
 <!-- پاپ‌آپ رمز عبور -->
 <div class="popup" id="passwordPopup">
   <div class="popup-content">
+    <button class="closeBtn" id="closePopup">&times;</button>
     <h2>رمز دوره را وارد کنید</h2>
     <input type="password" id="coursePassword" placeholder="رمز را وارد کنید">
-    <button onclick="checkPassword()">ورود</button>
+    <button id="enterBtn">ورود</button>
   </div>
 </div>
 
-<script>
-  const courses = document.querySelectorAll('.course-card');
-  const popup = document.getElementById('passwordPopup');
-  let selectedCourse = '';
-
-  // تنظیم رمز برای هر دوره
-  const passwords = {
-    arduino: '1234',
-    ai: '5678',
-    astronomy: 'abcd',
-    webdesign: '9999',
-    verbal-intelligence: '5555'
-  }
-
-  courses.forEach(card => {
-    card.addEventListener('click', () => {
-      selectedCourse = card.dataset.course;
-      popup.style.display = 'flex';
-    });
-  });
-
-  function checkPassword() {
-    const inputBox = document.getElementById('coursePassword');
-    const input = inputBox.value;
-    if(input === passwords[selectedCourse]) {
-      window.location.href = selectedCourse + '.html'; // صفحه دوره باز شود
-    } else {
-      alert('رمز اشتباه است!');
-      inputBox.value = '';
-    }
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
