@@ -1,6 +1,7 @@
 const courses = document.querySelectorAll('.course-card');
 const popup = document.getElementById('passwordPopup');
 const enterBtn = document.getElementById('enterBtn');
+const closeBtn = document.getElementById('closePopup');
 let selectedCourse = '';
 
 const passwords = {
@@ -11,12 +12,18 @@ const passwords = {
   'verbal-intelligence': '5555'
 };
 
-// باز شدن پاپ‌آپ
+// باز شدن پاپ‌آپ هنگام کلیک روی کارت
 courses.forEach(card => {
   card.addEventListener('click', () => {
     selectedCourse = card.dataset.course;
     popup.style.display = 'flex';
   });
+});
+
+// بستن پاپ‌آپ
+closeBtn.addEventListener('click', () => {
+  popup.style.display = 'none';
+  document.getElementById('coursePassword').value = '';
 });
 
 // بررسی رمز
@@ -28,5 +35,13 @@ enterBtn.addEventListener('click', () => {
   } else {
     alert('رمز اشتباه است!');
     inputBox.value = '';
+  }
+});
+
+// بستن پاپ‌آپ با ESC
+document.addEventListener('keydown', (e) => {
+  if(e.key === "Escape") {
+    popup.style.display = 'none';
+    document.getElementById('coursePassword').value = '';
   }
 });
