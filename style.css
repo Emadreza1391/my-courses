@@ -1,16 +1,27 @@
+/* فونت و پایه */
 body {
   font-family: Tahoma, sans-serif;
-  background: #0f2027;
-  background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
   margin: 0;
   padding: 0;
   color: white;
+
+  background: linear-gradient(270deg,#2c5364,#203a43,#0f2027,#1c92d2);
+  background-size: 600% 600%;
+  animation: bgMove 14s ease infinite;
 }
+
+/* انیمیشن بک گراند */
+@keyframes bgMove {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
 h1 {
   text-align: center;
   margin: 30px 0;
   font-size: 2em;
-  text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+  text-shadow: 0 0 12px rgba(0,0,0,0.7);
 }
 
 /* کارت‌ها */
@@ -27,27 +38,64 @@ h1 {
   height: 150px;
   border-radius: 20px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 1.2em;
-  font-weight: bold;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:1.2em;
+  font-weight:bold;
+  text-align:center;
+
+  background: linear-gradient(135deg,#ff512f,#dd2476);
+
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
+  transition: all 0.35s ease;
+  position:relative;
+  overflow:hidden;
+
+  animation: cardAppear 0.7s ease forwards;
 }
+
+/* نور داخل کارت */
+.course-card::before {
+  content:"";
+  position:absolute;
+  width:160%;
+  height:160%;
+  background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
+  opacity:0;
+  transition:0.4s;
+}
+
+/* Hover حرفه‌ای */
+.course-card:hover::before {
+  opacity:1;
+}
+
 .course-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+  transform: translateY(-12px) scale(1.08);
+  box-shadow: 0 0 30px rgba(255,255,255,0.7);
   filter: brightness(1.1);
 }
 
+/* انیمیشن ورود */
+@keyframes cardAppear {
+  from {
+    opacity:0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* نام داخل کارت */
 .course-name {
-  z-index: 2;
-  color: white;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+  z-index:2;
+  color:white;
+  text-shadow:0 0 8px rgba(0,0,0,0.8);
 }
 
 /* پاپ‌آپ */
@@ -60,36 +108,46 @@ h1 {
   align-items: center;
   animation: fadeIn 0.3s ease-in-out;
 }
+
 .popup-content {
-  background: #fff;
-  color: #000;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+
   padding: 30px;
   border-radius: 20px;
   max-width: 400px;
   width: 90%;
-  position: relative;
   text-align: center;
+
   animation: slideDown 0.3s ease-in-out;
 }
+
 .popup-content input {
-  padding: 10px;
+  padding: 12px;
   width: 80%;
   margin: 15px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-.popup-content button {
-  padding: 10px 20px;
+  border-radius: 8px;
   border: none;
-  background: #2575fc;
+  outline:none;
+}
+
+.popup-content button {
+  padding: 12px 22px;
+  border: none;
+  background: linear-gradient(45deg,#ff512f,#dd2476);
   color: white;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight:bold;
+  transition: 0.3s;
 }
+
 .popup-content button:hover {
-  background: #1a5fcc;
+  transform: scale(1.05);
 }
+
 .closeBtn {
   position: absolute;
   top: 10px;
@@ -98,16 +156,32 @@ h1 {
   border: none;
   font-size: 1.5em;
   cursor: pointer;
-  color: #333;
+  color: white;
 }
 
+/* انیمیشن‌ها */
 @keyframes fadeIn {
   from {opacity:0;}
   to {opacity:1;}
 }
+
 @keyframes slideDown {
   from {transform: translateY(-50px); opacity:0;}
   to {transform: translateY(0); opacity:1;}
+}
+
+/* اسکرول بار حرفه‌ای */
+::-webkit-scrollbar {
+  width:10px;
+}
+
+::-webkit-scrollbar-track {
+  background:#111;
+}
+
+::-webkit-scrollbar-thumb {
+  background:linear-gradient(#ff512f,#dd2476);
+  border-radius:10px;
 }
 
 /* موبایل */
@@ -115,6 +189,10 @@ h1 {
   .course-card {
     width: 90%;
     height: 120px;
+    font-size:1em;
   }
-  h1 { font-size: 1.5em; }
+
+  h1 {
+    font-size: 1.4em;
+  }
 }
