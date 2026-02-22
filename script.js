@@ -9,7 +9,9 @@ const passwords = {
   ai: '5678',
   astronomy: 'abcd',
   webdesign: '9999',
-  'verbal-intelligence': '5555'
+  'verbal-intelligence': '5555',
+  upload : 0000,
+  support : 0000
 };
 
 // باز شدن پاپ‌آپ هنگام کلیک روی کارت
@@ -45,3 +47,4 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('coursePassword').value = '';
   }
 });
+
